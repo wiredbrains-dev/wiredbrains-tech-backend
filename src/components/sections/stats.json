@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_stats",
+  "info": {
+    "displayName": "Stats",
+    "description": "Statistics/metrics display section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "string"
+    },
+    "stats": {
+      "type": "json"
+    }
+  }
+}

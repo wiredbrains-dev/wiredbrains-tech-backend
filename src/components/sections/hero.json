@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "Hero",
+    "description": "Full-screen hero section with headline and CTAs"
+  },
+  "options": {},
+  "attributes": {
+    "tagline": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "headline_accent": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "text"
+    },
+    "primary_button_text": {
+      "type": "string"
+    },
+    "primary_button_link": {
+      "type": "string"
+    },
+    "secondary_button_text": {
+      "type": "string"
+    },
+    "secondary_button_link": {
+      "type": "string"
+    },
+    "background_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

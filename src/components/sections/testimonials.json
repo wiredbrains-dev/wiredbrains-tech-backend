@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_testimonials",
+  "info": {
+    "displayName": "Testimonials",
+    "description": "Testimonials carousel section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subheading": {
+      "type": "string"
+    },
+    "show_all": {
+      "type": "boolean",
+      "default": true
+    },
+    "limit": {
+      "type": "integer",
+      "default": 6
+    }
+  }
+}

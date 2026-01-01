@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_sections_ctas",
+  "info": {
+    "displayName": "CTA",
+    "description": "Call-to-action banner section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "button_text": {
+      "type": "string"
+    },
+    "button_link": {
+      "type": "string"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": ["default", "gradient", "dark"],
+      "default": "default"
+    }
+  }
+}
