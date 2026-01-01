@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Architecture - WiredBrains CMS Solution</title>
+    <style>
+        :root {
+            --primary: #F54B15;
+            --dark: #0C0D0D;
+            --card-bg: #1E1E2A;
+            --text: #E5E5E5;
+            --text-muted: #9CA3AF;
+            --border: rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        header h1 span {
+            color: var(--primary);
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        section h2 span {
+            color: var(--primary);
+        }
+
+        /* Architecture Diagram */
+        .architecture-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .arch-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .arch-box.primary {
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(245, 75, 21, 0.2);
+        }
+
+        .arch-box h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .arch-box p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .arch-box .icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        /* Flow Steps */
+        .flow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .step {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -16px;
+            left: 24px;
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .step h3 {
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .tech-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .tech-card h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+        }
+
+        .tech-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .tech-card li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-card li strong {
+            color: var(--text);
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .benefit {
+            display: flex;
+            gap: 16px;
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(245, 75, 21, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit h3 {
+            margin-bottom: 8px;
+        }
+
+        .benefit p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Data Flow */
+        .data-flow {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .flow-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .flow-item {
+            background: var(--dark);
+            padding: 16px 24px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .flow-item.highlight {
+            border: 2px solid var(--primary);
+        }
+
+        .flow-arrow {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .flow-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #121318;
+            border-radius: 12px;
+            padding: 24px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            margin-top: 24px;
+        }
+
+        .code-block .comment {
+            color: #6B7280;
+        }
+
+        .code-block .keyword {
+            color: #F472B6;
+        }
+
+        .code-block .string {
+            color: #34D399;
+        }
+
+        .code-block .function {
+            color: #60A5FA;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+        }
+
+        /* Form Submission Section */
+        .form-flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .form-flow {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-step {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .form-step .num {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 12px;
+        }
+
+        .form-step h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .form-step p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+        }
+
+        footer .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        footer .logo span {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .architecture-diagram {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Technical <span>Architecture</span></h1>
+            <p>A modern, scalable CMS-driven web solution that empowers you to manage content without touching code.</p>
+        </div>
+    </header>
+
+    <!-- Architecture Overview -->
+    <section>
+        <div class="container">
+            <h2>System <span>Overview</span></h2>
+
+            <div class="architecture-diagram">
+                <div class="arch-box">
+                    <div class="icon">👤</div>
+                    <h3>Your Team</h3>
+                    <p>Content Editors</p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="arch-box primary">
+                    <div class="icon">📝</div>
+                    <h3>Strapi CMS</h3>
+                    <p>Content Management</p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="arch-box">
+                    <div class="icon">🔌</div>
+                    <h3>REST API</h3>
+                    <p>Data Delivery</p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="arch-box">
+                    <div class="icon">⚛️</div>
+                    <h3>React Frontend</h3>
+                    <p>User Interface</p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="arch-box">
+                    <div class="icon">🌐</div>
+                    <h3>Visitors</h3>
+                    <p>End Users</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section>
+        <div class="container">
+            <h2>How It <span>Works</span></h2>
+
+            <div class="flow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>We Build the Frontend</h3>
+                    <p>We create a beautiful, responsive website using React with all your desired sections, animations, and features. The design matches your brand perfectly.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Configure Strapi CMS</h3>
+                    <p>We set up Strapi Cloud with custom content types for your services, projects, testimonials, team members, and any other content you need to manage.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>We Connect Everything</h3>
+                    <p>The frontend fetches data from Strapi's API. When you update content in Strapi, it automatically appears on your website - no code changes needed.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>You Manage Content</h3>
+                    <p>Log into your Strapi dashboard to add, edit, or remove content. Upload images, reorder items, toggle visibility - all through an intuitive admin interface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Flow -->
+    <section>
+        <div class="container">
+            <h2>Data <span>Flow</span></h2>
+
+            <div class="data-flow">
+                <p class="flow-label">Content Creation Flow</p>
+                <div class="flow-row">
+                    <div class="flow-item highlight">
+                        <strong>Strapi Admin</strong><br>
+                        <small>Create/Edit Content</small>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">
+                        <strong>PostgreSQL</strong><br>
+                        <small>Store Data</small>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">
+                        <strong>REST API</strong><br>
+                        <small>/api/services</small>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item highlight">
+                        <strong>React App</strong><br>
+                        <small>Display to Users</small>
+                    </div>
+                </div>
+
+                <p class="flow-label">Form Submission Flow</p>
+                <div class="flow-row">
+                    <div class="flow-item highlight">
+                        <strong>User</strong><br>
+                        <small>Fills Contact Form</small>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">
+                        <strong>React Form</strong><br>
+                        <small>Validates Input</small>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item">
+                        <strong>Strapi API</strong><br>
+                        <small>POST /submissions</small>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-item highlight">
+                        <strong>Email + Database</strong><br>
+                        <small>Notify & Store</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+        <div class="container">
+            <h2>Technology <span>Stack</span></h2>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li><strong>React 18</strong> - UI Library</li>
+                        <li><strong>Vite</strong> - Build Tool</li>
+                        <li><strong>Tailwind CSS</strong> - Styling</li>
+                        <li><strong>Framer Motion</strong> - Animations</li>
+                        <li><strong>React Router</strong> - Navigation</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>CMS (Strapi Cloud)</h3>
+                    <ul>
+                        <li><strong>Strapi v5</strong> - Headless CMS</li>
+                        <li><strong>PostgreSQL</strong> - Database</li>
+                        <li><strong>Media Library</strong> - Image Storage</li>
+                        <li><strong>REST API</strong> - Data Delivery</li>
+                        <li><strong>Role-Based Access</strong> - Security</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Hosting</h3>
+                    <ul>
+                        <li><strong>Vercel</strong> - Frontend Hosting</li>
+                        <li><strong>Strapi Cloud</strong> - CMS Hosting</li>
+                        <li><strong>Global CDN</strong> - Fast Delivery</li>
+                        <li><strong>SSL/HTTPS</strong> - Security</li>
+                        <li><strong>Auto-Deploy</strong> - Git Integration</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Optional Add-ons</h3>
+                    <ul>
+                        <li><strong>Supabase</strong> - Auth & Database</li>
+                        <li><strong>Resend</strong> - Transactional Email</li>
+                        <li><strong>reCAPTCHA</strong> - Spam Protection</li>
+                        <li><strong>Analytics</strong> - Usage Tracking</li>
+                        <li><strong>Sentry</strong> - Error Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Types -->
+    <section>
+        <div class="container">
+            <h2>Content <span>Types</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 40px;">These are the types of content you can manage through the CMS:</p>
+
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Services</h3>
+                    <ul>
+                        <li>Title & Description</li>
+                        <li>Icon (dropdown selection)</li>
+                        <li>Feature bullet points</li>
+                        <li>Display order</li>
+                        <li>Active/Inactive toggle</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Projects / Case Studies</h3>
+                    <ul>
+                        <li>Title & Category</li>
+                        <li>Challenge & Solution text</li>
+                        <li>Hero image + Gallery</li>
+                        <li>Project statistics</li>
+                        <li>Publish status</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Testimonials</h3>
+                    <ul>
+                        <li>Client name & role</li>
+                        <li>Quote/testimonial text</li>
+                        <li>Avatar/photo upload</li>
+                        <li>Company name</li>
+                        <li>Display order</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <h3>Dynamic Pages</h3>
+                    <ul>
+                        <li>Page title & slug</li>
+                        <li>SEO metadata</li>
+                        <li>Dynamic sections (drag & drop)</li>
+                        <li>Hero, Stats, CTA blocks</li>
+                        <li>Publish/Draft status</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Submissions -->
+    <section>
+        <div class="container">
+            <h2>Form <span>Submissions</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Contact form submissions are handled securely and efficiently:</p>
+
+            <div class="form-flow">
+                <div class="form-step">
+                    <div class="num">1</div>
+                    <h4>User Submits</h4>
+                    <p>Fills out contact form</p>
+                </div>
+
+                <div class="form-step">
+                    <div class="num">2</div>
+                    <h4>Validation</h4>
+                    <p>reCAPTCHA + field checks</p>
+                </div>
+
+                <div class="form-step">
+                    <div class="num">3</div>
+                    <h4>API Request</h4>
+                    <p>Sent to Strapi</p>
+                </div>
+
+                <div class="form-step">
+                    <div class="num">4</div>
+                    <h4>Stored</h4>
+                    <p>Saved in database</p>
+                </div>
+
+                <div class="form-step">
+                    <div class="num">5</div>
+                    <h4>Email Sent</h4>
+                    <p>You get notified</p>
+                </div>
+            </div>
+
+            <div class="data-flow" style="margin-top: 40px;">
+                <h3 style="margin-bottom: 20px;">View Submissions in Strapi</h3>
+                <p style="color: var(--text-muted);">All form submissions are stored in your Strapi dashboard. You can:</p>
+                <ul style="color: var(--text-muted); margin-top: 16px; margin-left: 20px;">
+                    <li>View all submissions with timestamps</li>
+                    <li>Filter by date, status, or search by name/email</li>
+                    <li>Mark submissions as read/responded</li>
+                    <li>Export to CSV for your records</li>
+                    <li>Delete old submissions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section>
+        <div class="container">
+            <h2>Key <span>Benefits</span></h2>
+
+            <div class="benefits-grid">
+                <div class="benefit">
+                    <div class="benefit-icon">🚀</div>
+                    <div>
+                        <h3>Instant Updates</h3>
+                        <p>Change content in Strapi and see it live on your website immediately. No waiting for developers.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">🔒</div>
+                    <div>
+                        <h3>Secure & Scalable</h3>
+                        <p>Enterprise-grade security with role-based access. Infrastructure scales automatically with traffic.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">💰</div>
+                    <div>
+                        <h3>Cost Effective</h3>
+                        <p>No expensive WordPress maintenance. Strapi Cloud starts at $29/month with included hosting.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">📱</div>
+                    <div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Both your website and the admin dashboard work perfectly on mobile devices.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">⚡</div>
+                    <div>
+                        <h3>Lightning Fast</h3>
+                        <p>Static-like performance with dynamic content. Pages load in under 1 second globally.</p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">🎨</div>
+                    <div>
+                        <h3>No Coding Required</h3>
+                        <p>User-friendly interface for content management. If you can use Google Docs, you can use Strapi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Timeline -->
+    <section>
+        <div class="container">
+            <h2>Implementation <span>Process</span></h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Phase 1: Discovery & Design</h3>
+                    <p>We understand your requirements, review existing content, and create wireframes for the new website structure and CMS architecture.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Phase 2: Frontend Development</h3>
+                    <p>Build the React frontend with all pages, components, animations, and responsive design. Create reusable section components.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Phase 3: CMS Configuration</h3>
+                    <p>Set up Strapi Cloud, define content types, configure media library, and establish API permissions and user roles.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Phase 4: Integration & Content Migration</h3>
+                    <p>Connect frontend to Strapi API, implement data fetching hooks, and migrate existing content into the new CMS.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Phase 5: Testing & Launch</h3>
+                    <p>QA testing across devices, performance optimization, SEO verification, and deployment to production environment.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Phase 6: Training & Handover</h3>
+                    <p>Train your team on using Strapi, provide documentation, and offer ongoing support for questions or updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Example -->
+    <section>
+        <div class="container">
+            <h2>Under The <span>Hood</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Here's a simplified view of how the frontend fetches content from Strapi:</p>
+
+            <div class="code-block">
+<span class="comment">// React component fetches services from Strapi API</span>
+<span class="keyword">const</span> Services = () => {
+  <span class="keyword">const</span> { data: services, loading } = <span class="function">useServices</span>();
+
+  <span class="keyword">if</span> (loading) <span class="keyword">return</span> &lt;LoadingSpinner /&gt;;
+
+  <span class="keyword">return</span> (
+    &lt;section&gt;
+      {services.<span class="function">map</span>(service =&gt; (
+        &lt;ServiceCard
+          key={service.id}
+          title={service.title}
+          description={service.description}
+          icon={service.icon}
+        /&gt;
+      ))}
+    &lt;/section&gt;
+  );
+};
+
+<span class="comment">// The useServices hook fetches from Strapi</span>
+<span class="keyword">async function</span> <span class="function">getServices</span>() {
+  <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="function">fetch</span>(<span class="string">'https://your-strapi.com/api/services'</span>);
+  <span class="keyword">return</span> response.<span class="function">json</span>();
+}
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section>
+        <div class="container">
+            <h2>Why Not <span>WordPress?</span></h2>
+
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 40px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border);">
+                            <th style="text-align: left; padding: 16px; color: var(--text-muted);">Feature</th>
+                            <th style="text-align: center; padding: 16px;">WordPress</th>
+                            <th style="text-align: center; padding: 16px; color: var(--primary);">Our Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 16px;">Page Load Speed</td>
+                            <td style="text-align: center; padding: 16px;">2-5 seconds</td>
+                            <td style="text-align: center; padding: 16px; color: var(--primary);">&lt;1 second</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 16px;">Security Updates</td>
+                            <td style="text-align: center; padding: 16px;">Manual / Plugins</td>
+                            <td style="text-align: center; padding: 16px; color: var(--primary);">Automatic</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 16px;">Plugin Conflicts</td>
+                            <td style="text-align: center; padding: 16px;">Common</td>
+                            <td style="text-align: center; padding: 16px; color: var(--primary);">None</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 16px;">Design Flexibility</td>
+                            <td style="text-align: center; padding: 16px;">Theme-limited</td>
+                            <td style="text-align: center; padding: 16px; color: var(--primary);">Unlimited</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 16px;">Hacking Risk</td>
+                            <td style="text-align: center; padding: 16px;">High (43% of web)</td>
+                            <td style="text-align: center; padding: 16px; color: var(--primary);">Very Low</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px;">Scaling Cost</td>
+                            <td style="text-align: center; padding: 16px;">Expensive hosting</td>
+                            <td style="text-align: center; padding: 16px; color: var(--primary);">Pay as you grow</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo">WIRED <span>BRAINS</span></div>
+            <p>Enterprise-Grade IT Solutions</p>
+            <p style="margin-top: 24px; font-size: 0.875rem;">© 2024 WiredBrains. Technical Architecture Documentation.</p>
+        </div>
+    </footer>
+</body>
+</html>
