@@ -489,7 +489,26 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     details: Schema.Attribute.JSON;
     display_order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    icon: Schema.Attribute.String;
+    icon: Schema.Attribute.Enumeration<
+      [
+        'shield',
+        'server',
+        'cloud',
+        'monitor',
+        'lock',
+        'settings',
+        'phone',
+        'database',
+        'refresh-cw',
+        'mail',
+        'headphones',
+        'network',
+        'hard-drive',
+        'cpu',
+        'key',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'settings'>;
     is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

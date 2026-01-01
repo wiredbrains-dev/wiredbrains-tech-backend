@@ -20,7 +20,25 @@
       "required": true
     },
     "icon": {
-      "type": "string"
+      "type": "enumeration",
+      "enum": [
+        "shield",
+        "server",
+        "cloud",
+        "monitor",
+        "lock",
+        "settings",
+        "phone",
+        "database",
+        "refresh-cw",
+        "mail",
+        "headphones",
+        "network",
+        "hard-drive",
+        "cpu",
+        "key"
+      ],
+      "default": "settings"
     },
     "details": {
       "type": "json"
