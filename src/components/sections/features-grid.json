@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_sections_features_grids",
+  "info": {
+    "displayName": "Features Grid",
+    "description": "Grid of feature cards with icons"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "features": {
+      "type": "json"
+    },
+    "columns": {
+      "type": "enumeration",
+      "enum": ["2", "3", "4"],
+      "default": "3"
+    }
+  }
+}

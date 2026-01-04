@@ -1,0 +1,68 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Contact Page",
+    "description": "Contact page content and contact information"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Get in Touch"
+    },
+    "description": {
+      "type": "text"
+    },
+    "sidebar_heading": {
+      "type": "string"
+    },
+    "sidebar_description": {
+      "type": "text"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "text"
+    },
+    "form_name_label": {
+      "type": "string",
+      "default": "Name"
+    },
+    "form_email_label": {
+      "type": "string",
+      "default": "Email"
+    },
+    "form_phone_label": {
+      "type": "string",
+      "default": "Phone (Optional)"
+    },
+    "form_company_label": {
+      "type": "string",
+      "default": "Company (Optional)"
+    },
+    "form_message_label": {
+      "type": "string",
+      "default": "Message"
+    },
+    "form_submit_text": {
+      "type": "string",
+      "default": "Send Message"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "text"
+    }
+  }
+}

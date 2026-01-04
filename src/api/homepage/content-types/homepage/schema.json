@@ -1,0 +1,151 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage",
+    "description": "Homepage content including hero and section headings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero_tagline": {
+      "type": "string",
+      "default": "Enterprise-Grade IT Solutions"
+    },
+    "hero_headline": {
+      "type": "string",
+      "required": true
+    },
+    "hero_headline_accent": {
+      "type": "string"
+    },
+    "hero_subheading": {
+      "type": "text"
+    },
+    "hero_primary_cta_text": {
+      "type": "string",
+      "default": "Get Started"
+    },
+    "hero_primary_cta_link": {
+      "type": "string",
+      "default": "/contact"
+    },
+    "hero_secondary_cta_text": {
+      "type": "string",
+      "default": "Explore Services"
+    },
+    "hero_secondary_cta_link": {
+      "type": "string",
+      "default": "#services"
+    },
+    "trusted_clients_text": {
+      "type": "string",
+      "default": "Trusted by 25+ Companies Worldwide"
+    },
+    "services_heading": {
+      "type": "string",
+      "default": "OUR SERVICES"
+    },
+    "services_subheading": {
+      "type": "text"
+    },
+    "about_heading_1": {
+      "type": "string"
+    },
+    "about_heading_1_accent": {
+      "type": "string"
+    },
+    "about_block_1_title": {
+      "type": "string"
+    },
+    "about_block_1_text": {
+      "type": "text"
+    },
+    "about_block_2_title": {
+      "type": "string"
+    },
+    "about_block_2_text": {
+      "type": "text"
+    },
+    "about_image_1": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "about_heading_2": {
+      "type": "string"
+    },
+    "about_heading_2_accent": {
+      "type": "string"
+    },
+    "about_block_3_title": {
+      "type": "string"
+    },
+    "about_block_3_text": {
+      "type": "text"
+    },
+    "about_block_4_title": {
+      "type": "string"
+    },
+    "about_block_4_text": {
+      "type": "text"
+    },
+    "about_image_2": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "portfolio_badge": {
+      "type": "string",
+      "default": "Case Studies"
+    },
+    "portfolio_heading": {
+      "type": "string"
+    },
+    "portfolio_heading_accent": {
+      "type": "string"
+    },
+    "portfolio_description": {
+      "type": "text"
+    },
+    "testimonials_heading": {
+      "type": "string"
+    },
+    "testimonials_heading_accent": {
+      "type": "string"
+    },
+    "stats_heading": {
+      "type": "string",
+      "default": "OUR IMPACT"
+    },
+    "stats_description": {
+      "type": "text"
+    },
+    "cta_heading": {
+      "type": "string"
+    },
+    "cta_description": {
+      "type": "text"
+    },
+    "cta_button_text": {
+      "type": "string",
+      "default": "Get Started"
+    },
+    "cta_button_link": {
+      "type": "string",
+      "default": "/contact"
+    },
+    "seo_title": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "text"
+    }
+  }
+}

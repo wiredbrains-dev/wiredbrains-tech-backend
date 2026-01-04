@@ -1,11 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "testimonials",
+  "collectionName": "clients",
   "info": {
-    "singularName": "testimonial",
-    "pluralName": "testimonials",
-    "displayName": "Testimonial",
-    "description": "Client testimonials and reviews"
+    "singularName": "client",
+    "pluralName": "clients",
+    "displayName": "Client",
+    "description": "Trusted clients displayed in the marquee section"
   },
   "options": {
     "draftAndPublish": true
@@ -16,27 +16,17 @@
       "type": "string",
       "required": true
     },
-    "role": {
-      "type": "string"
-    },
-    "company": {
-      "type": "string"
-    },
-    "quote": {
-      "type": "text",
-      "required": true
-    },
-    "avatar": {
+    "logo": {
       "type": "media",
       "multiple": false,
       "required": false,
       "allowedTypes": ["images"]
     },
-    "rating": {
-      "type": "integer",
-      "required": true,
-      "min": 1,
-      "max": 5
+    "website": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
     },
     "display_order": {
       "type": "integer",

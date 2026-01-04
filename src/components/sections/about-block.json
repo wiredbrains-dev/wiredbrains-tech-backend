@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_sections_about_blocks",
+  "info": {
+    "displayName": "About Block",
+    "description": "Two-column layout with image and text content"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "heading_accent": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "image_position": {
+      "type": "enumeration",
+      "enum": ["left", "right"],
+      "default": "left"
+    },
+    "content_blocks": {
+      "type": "json"
+    }
+  }
+}

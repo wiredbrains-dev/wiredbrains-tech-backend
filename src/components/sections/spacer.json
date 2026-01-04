@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_spacers",
+  "info": {
+    "displayName": "Spacer",
+    "description": "Empty space between sections"
+  },
+  "options": {},
+  "attributes": {
+    "height": {
+      "type": "enumeration",
+      "enum": ["small", "medium", "large", "xlarge"],
+      "default": "medium"
+    }
+  }
+}
