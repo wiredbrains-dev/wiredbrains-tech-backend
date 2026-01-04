@@ -430,6 +430,90 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiClientClient extends Struct.CollectionTypeSchema {
+  collectionName: 'clients';
+  info: {
+    description: 'Trusted clients displayed in the marquee section';
+    displayName: 'Client';
+    pluralName: 'clients';
+    singularName: 'client';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    display_order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::client.client'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    website: Schema.Attribute.String;
+  };
+}
+
+export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
+  collectionName: 'contact_pages';
+  info: {
+    description: 'Contact page content and contact information';
+    displayName: 'Contact Page';
+    pluralName: 'contact-pages';
+    singularName: 'contact-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    form_company_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Company (Optional)'>;
+    form_email_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Email'>;
+    form_message_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Message'>;
+    form_name_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Name'>;
+    form_phone_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Phone (Optional)'>;
+    form_submit_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Send Message'>;
+    heading: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Get in Touch'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-page.contact-page'
+    > &
+      Schema.Attribute.Private;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    seo_description: Schema.Attribute.Text;
+    seo_title: Schema.Attribute.String;
+    sidebar_description: Schema.Attribute.Text;
+    sidebar_heading: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactSubmissionContactSubmission
   extends Struct.CollectionTypeSchema {
   collectionName: 'contact_submissions';
@@ -470,10 +554,122 @@ export interface ApiContactSubmissionContactSubmission
   };
 }
 
+export interface ApiGlobalStatGlobalStat extends Struct.CollectionTypeSchema {
+  collectionName: 'global_stats';
+  info: {
+    description: 'Statistics displayed on the homepage impact section';
+    displayName: 'Global Stat';
+    pluralName: 'global-stats';
+    singularName: 'global-stat';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    display_order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-stat.global-stat'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    suffix: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    value: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
+  collectionName: 'homepages';
+  info: {
+    description: 'Homepage content including hero and section headings';
+    displayName: 'Homepage';
+    pluralName: 'homepages';
+    singularName: 'homepage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    about_block_1_text: Schema.Attribute.Text;
+    about_block_1_title: Schema.Attribute.String;
+    about_block_2_text: Schema.Attribute.Text;
+    about_block_2_title: Schema.Attribute.String;
+    about_block_3_text: Schema.Attribute.Text;
+    about_block_3_title: Schema.Attribute.String;
+    about_block_4_text: Schema.Attribute.Text;
+    about_block_4_title: Schema.Attribute.String;
+    about_heading_1: Schema.Attribute.String;
+    about_heading_1_accent: Schema.Attribute.String;
+    about_heading_2: Schema.Attribute.String;
+    about_heading_2_accent: Schema.Attribute.String;
+    about_image_1: Schema.Attribute.Media<'images'>;
+    about_image_2: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cta_button_link: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/contact'>;
+    cta_button_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Get Started'>;
+    cta_description: Schema.Attribute.Text;
+    cta_heading: Schema.Attribute.String;
+    hero_headline: Schema.Attribute.String & Schema.Attribute.Required;
+    hero_headline_accent: Schema.Attribute.String;
+    hero_primary_cta_link: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/contact'>;
+    hero_primary_cta_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Get Started'>;
+    hero_secondary_cta_link: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'#services'>;
+    hero_secondary_cta_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Explore Services'>;
+    hero_subheading: Schema.Attribute.Text;
+    hero_tagline: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Enterprise-Grade IT Solutions'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::homepage.homepage'
+    > &
+      Schema.Attribute.Private;
+    portfolio_badge: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Case Studies'>;
+    portfolio_description: Schema.Attribute.Text;
+    portfolio_heading: Schema.Attribute.String;
+    portfolio_heading_accent: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    seo_description: Schema.Attribute.Text;
+    seo_title: Schema.Attribute.String;
+    services_heading: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'OUR SERVICES'>;
+    services_subheading: Schema.Attribute.Text;
+    stats_description: Schema.Attribute.Text;
+    stats_heading: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'OUR IMPACT'>;
+    testimonials_heading: Schema.Attribute.String;
+    testimonials_heading_accent: Schema.Attribute.String;
+    trusted_clients_text: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Trusted by 25+ Companies Worldwide'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: 'pages';
   info: {
-    description: 'Dynamic pages with flexible sections';
+    description: 'Dynamic pages with flexible sections (like ACF Pro Flexible Content)';
     displayName: 'Page';
     pluralName: 'pages';
     singularName: 'page';
@@ -500,11 +696,57 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'sections.testimonials',
         'sections.portfolio-grid',
         'sections.clients',
+        'sections.about-block',
+        'sections.image-gallery',
+        'sections.faq',
+        'sections.contact-info',
+        'sections.features-grid',
+        'sections.spacer',
       ]
     >;
     seo_description: Schema.Attribute.Text;
     seo_title: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    description: 'Portfolio case studies and projects';
+    displayName: 'Project';
+    pluralName: 'projects';
+    singularName: 'project';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.String;
+    challenge: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    display_order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    gallery_images: Schema.Attribute.Media<'images', true>;
+    hero_image: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    short_description: Schema.Attribute.Text;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    solution: Schema.Attribute.RichText;
+    stats: Schema.Attribute.JSON;
+    status: Schema.Attribute.Enumeration<['draft', 'published']> &
+      Schema.Attribute.DefaultTo<'draft'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -564,9 +806,53 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
+  collectionName: 'site_settings';
+  info: {
+    description: 'Global site settings including logo, footer, and social links';
+    displayName: 'Site Settings';
+    pluralName: 'site-settings';
+    singularName: 'site-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contact_address: Schema.Attribute.Text;
+    contact_email: Schema.Attribute.Email;
+    contact_phone: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    footer_copyright: Schema.Attribute.String;
+    footer_tagline: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::site-setting.site-setting'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'>;
+    logo_dark: Schema.Attribute.Media<'images'>;
+    nav_links: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    site_name: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'WIRED BRAINS'>;
+    social_facebook: Schema.Attribute.String;
+    social_github: Schema.Attribute.String;
+    social_instagram: Schema.Attribute.String;
+    social_linkedin: Schema.Attribute.String;
+    social_twitter: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
   collectionName: 'testimonials';
   info: {
+    description: 'Client testimonials and reviews';
     displayName: 'Testimonial';
     pluralName: 'testimonials';
     singularName: 'testimonial';
@@ -575,6 +861,7 @@ export interface ApiTestimonialTestimonial extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    avatar: Schema.Attribute.Media<'images'>;
     company: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1116,9 +1403,15 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::client.client': ApiClientClient;
+      'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::contact-submission.contact-submission': ApiContactSubmissionContactSubmission;
+      'api::global-stat.global-stat': ApiGlobalStatGlobalStat;
+      'api::homepage.homepage': ApiHomepageHomepage;
       'api::page.page': ApiPagePage;
+      'api::project.project': ApiProjectProject;
       'api::service.service': ApiServiceService;
+      'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
       'api::testimonial.testimonial': ApiTestimonialTestimonial;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
